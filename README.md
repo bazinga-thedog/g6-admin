@@ -5,10 +5,11 @@ A comprehensive backoffice admin panel for managing G6 Intelligence investment d
 ## Features
 
 - 🔐 **Password Protected** - Secure access to admin functions
-- 📊 **City Overview Management** - Edit city descriptions, metrics, and highlights
+- 🌍 **Investment Locations Management** - Edit city/location data with multi-currency support
 - 🏘️ **Neighborhoods Management** - Manage all neighborhood investment data
 - 🌟 **Quality of Life Data** - Update amenities, transportation, and lifestyle ratings
 - ✏️ **Full CRUD Operations** - Create, Read, Update, Delete all records
+- 💰 **Multi-Currency Support** - EUR, USD, GBP pricing and growth data
 - 🎨 **Modern UI** - Gradient design with responsive layout
 - 💾 **Real-time Sync** - Changes reflect immediately in the main app
 
@@ -58,13 +59,14 @@ Open http://localhost:5173 in your browser
 
 ## Usage
 
-### Managing Cities
+### Managing Investment Locations
 
-1. Click the **"City Overview"** tab
-2. View all cities in card grid
-3. Click **"Edit"** to modify city data
-4. Click **"+ New City"** to add a new city
-5. Update fields and click **"Save"**
+1. Click the **"Investment Locations"** tab
+2. View all locations in card grid
+3. Click on any card or **"Edit"** to modify location data
+4. Click **"+ New Location"** to add a new investment location
+5. Update fields including multi-currency pricing, rental yields, and highlights
+6. Click **"Save Location"** to save changes
 
 ### Managing Neighborhoods
 
@@ -84,25 +86,30 @@ Open http://localhost:5173 in your browser
 
 ## Data Structure
 
-### City Overview
-- City name, hero image, description
-- Key highlights (JSON array)
-- Average price per sqm (EUR, USD, GBP)
-- Average rental yield, days to rent
-- 5-year growth trends
+### Investment Locations
+- City, country, country code
+- Preferred location flag
+- Hero image and image URLs
+- Description and highlights (JSON array)
+- Price per sqm ranges (EUR, USD, GBP) - min/max
+- Rental yield ranges (min/max percentage)
+- Days to rent average
+- 5-year price growth (JSON array of 5 numbers)
 
 ### Neighborhoods
 - Name, city, image, description
-- Price ranges per sqm (multi-currency)
-- Rental yield ranges
-- Investment metrics (tax, holding time, etc.)
-- Rent per sqm, growth arrays
+- Price ranges per sqm (EUR, USD, GBP) - min/max
+- Rental yield ranges (min/max percentage)
+- Days to rent average
+- Rent per sqm (EUR, USD, GBP)
+- Investment metrics (acquisition tax, recommended holding time)
+- 5-year price growth arrays per currency (JSON arrays)
 
 ### Quality of Life
 - City and neighborhood references
-- Amenities counts (restaurants, cafés, etc.)
-- Transportation data (metro, bus, walkability)
-- Lifestyle ratings (nightlife, shopping, culture, safety)
+- Amenities counts (restaurants, cafés, supermarkets, parks, gyms, schools)
+- Transportation data (metro/train/bus stations, bike lanes km, walkability %, avg commute time)
+- Lifestyle ratings (nightlife, shopping, culture, safety, green spaces, family friendly) - Low/Moderate/High/Very High
 - Popularity factors (JSON array)
 
 ## JSON Field Format
@@ -150,9 +157,9 @@ Open http://localhost:5173 in your browser
 
 The admin panel connects to three Supabase tables:
 
-- `city_overview` - City-level data (3 records)
-- `neighborhoods` - Neighborhood data (15 records)
-- `neighborhood_quality_of_life` - Lifestyle data (15 records)
+- `investment_locations` - City/location-level investment data with multi-currency support
+- `neighborhoods` - Detailed neighborhood investment data with multi-currency pricing
+- `neighborhood_quality_of_life` - Comprehensive lifestyle and amenity data
 
 See the main G6 Intelligence repository for SQL schema files.
 
